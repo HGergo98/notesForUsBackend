@@ -1,7 +1,19 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const { logger } = require('./middleware/logger');
+const errorHandler = require('./middleware/errorHandler');
 const PORT = process.env.PORT || 3500;
+
+// logging requests
+app.use(logger);
+
+// handling json files
+app.use(express.json());
+
+// parsing received cookies
+app.use(cookieParser());
 
 // loading static files like: css, images
 app.use('/', express.static(path.join(__dirname, 'public')));
@@ -21,5 +33,8 @@ app.all('*', (req, res) => {
     res.type('txt').send('404 Not Found');
   }
 });
+
+// handling and logging errors
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}.`));
