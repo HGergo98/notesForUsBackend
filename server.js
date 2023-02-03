@@ -4,7 +4,7 @@ const path = require('path');
 const PORT = process.env.PORT || 3500;
 
 // loading static files like: css, images
-app.use('/', express.static(path.join(__dirname, '/public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 // handling the / route
 app.use('/', require('./routes/root'));
