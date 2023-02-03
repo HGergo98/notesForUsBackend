@@ -2,12 +2,18 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+
+const corsOptions = require('./config/corsOptions');
 const { logger } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
 const PORT = process.env.PORT || 3500;
 
 // logging requests
 app.use(logger);
+
+// set up cors
+app.use(cors(corsOptions));
 
 // handling json files
 app.use(express.json());
