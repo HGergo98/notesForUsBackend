@@ -94,7 +94,8 @@ const updateUser = asyncHandler(async (req, res) => {
 // @access Private
 const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.body;
-
+  
+  // Confirm data
   if (!id) {
     return res.status(400).json({ message: 'User ID required.' });
   }
@@ -106,6 +107,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: 'User has assigned notes.'});
   }
 
+  // confirm user exist to delete
   const user = await User.findById(id).exec();
 
   if(!user) {
