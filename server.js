@@ -32,7 +32,12 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 // handling the / route
 app.use('/', require('./routes/root'));
+
+// handling the /users route
 app.use('/users', require('./routes/userRoutes'));
+
+// handling the /notes route
+app.use('/notes', require('./routes/noteRoutes'));
 
 // hanndling any route that not exist
 app.all('*', (req, res) => {
