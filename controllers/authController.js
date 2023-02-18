@@ -103,7 +103,7 @@ const logout = (req, res) => {
   const cookies = req.cookies;
 
   if (!cookies.jwt) {
-    return res.send(204); // no content
+    return res.sendStatus(204); // no content
   }
 
   res.clearCookie('jwt', { httpOnly: true, sameSite: 'none', secure: true });
